@@ -4,21 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Lista de Compra</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="shopping-cart..png" alt="Carrinho" class="logo">
-            <h1>MINHA LISTA DE COMPRA</h1>
+    <!-- Tela de Login -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="shopping-cart">
+                        🛒
+                    </div>
+                    <h1>MINHA LISTA<br>DE COMPRA</h1>
+                </div>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" required placeholder="Digite seu nome">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" required placeholder="Digite sua data de nascimento">
+                </div>
+                
+                <button type="submit" class="login-btn">Entrar</button>
+            </form>
+            
+            <div id="loginAlert" class="alert"></div>
+        </div>
+    </div>
+
+    <!-- Tela Principal -->
+    <div id="mainScreen" class="screen">
+        <header class="header">
+            <div class="logo-mini">
+                <span class="cart-icon">🛒</span>
+                <h2>Minha Lista de Compra</h2>
+            </div>
+            <div class="user-info">
+                <span id="welcomeMessage">Bem-vindo!</span>
+                <button id="logoutBtn" class="logout-btn">Sair</button>
+            </div>
         </header>
 
-        <form id="item-form">
-            <input type="text" id="item-input" placeholder="Adicione um item" required>
-            <button type="submit">Adicionar</button>
-        </form>
+        <main class="main-content">
+            <!-- Formulário para adicionar item -->
+            <div class="add-item-form">
+                <h3>Adicionar Item</h3>
+                <form id="itemForm">
+                    <div class="form-row">
+                        <input type="text" id="itemName" placeholder="Nome do item" required>
+                        <input type="number" id="itemQuantity" placeholder="Qtd" min="1" value="1" required>
+                        <input type="number" id="itemPrice" placeholder="Preço (R$)" step="0.01" min="0">
+                        <button type="submit">Adicionar</button>
+                    </div>
+                </form>
+            </div>
 
-        <ul id="shopping-list"></ul>
+            <!-- Lista de Compras Atual -->
+            <div class="shopping-list">
+                <h3>Lista de Compras</h3>
+                <div class="list-stats">
+                    <span>Total de itens: <strong id="totalItems">0</strong></span>
+                    <span>Total estimado: <strong id="totalPrice">R$ 0,00</strong></span>
+                </div>
+                <ul id="shoppingList" class="item-list"></ul>
+            </div>
+
+            <!-- Histórico -->
+            <div class="history-section">
+                <h3>Histórico de Compras</h3>
+                <button id="clearListBtn" class="clear-btn">Finalizar Compra Atual</button>
+                <div id="historyList" class="history-list"></div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>

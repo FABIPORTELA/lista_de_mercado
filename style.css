@@ -1,101 +1,468 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8b3b3;
-    margin: 0;
-    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    min-height: 100vh;
 }
 
-.container {
-    max-width: 480px;
-    margin: 40px auto;
-    background: #fff2f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-    text-align: center;
+.screen {
+    display: none;
+    min-height: 100vh;
 }
 
-header {
+.screen.active {
+    display: block;
+}
+
+/* === TELA DE LOGIN === */
+.login-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.logo-container {
+    margin-bottom: 40px;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    filter: drop-shadow(1px 1px 1px #ac7e7e);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
-h1 {
-    background-color: #607a99;
-    color: #f2f2f2;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: 900;
-    box-shadow: 3px 3px 0px #384f68;
+.shopping-cart {
+    font-size: 4rem;
+    margin-bottom: 10px;
 }
 
-form {
+.logo h1 {
+    color: #5a67d8;
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
     margin-bottom: 20px;
 }
 
-input[type="text"] {
-    padding: 10px;
-    width: 70%;
-    border: 2px solid #607a99;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #607a99;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #5a67d8;
     font-weight: bold;
-    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #495e78;
-}
-
-#shopping-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-#shopping-list li {
+.form-group input {
+    width: 100%;
     padding: 12px;
-    border-bottom: 1px solid #ccc;
-    font-size: 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #5a67d8;
+    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #5a67d8, #667eea);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(90, 103, 216, 0.3);
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.alert.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.alert.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+/* === TELA PRINCIPAL === */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
-#shopping-list li button {
-    background-color: #e74c3c;
-    border: none;
+.logo-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-icon {
+    font-size: 2rem;
+}
+
+.logo-mini h2 {
+    color: #5a67d8;
+    font-size: 1.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    background: #e53e3e;
     color: white;
-    padding: 6px 10px;
-    border-radius: 4px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #c53030;
+    transform: translateY(-1px);
+}
+
+.main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* === FORMULÁRIO DE ADICIONAR ITEM === */
+.add-item-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.add-item-form h3 {
+    color: #5a67d8;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 80px 120px 100px;
+    gap: 10px;
+    align-items: end;
+}
+
+.form-row input, .form-row button {
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-row input:focus {
+    outline: none;
+    border-color: #5a67d8;
+    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+}
+
+.form-row button {
+    background: #48bb78;
+    color: white;
+    border: none;
     cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
-#shopping-list li button:hover {
-    background-color: #c0392b;
+.form-row button:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+}
+
+/* === LISTA DE COMPRAS === */
+.shopping-list {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.shopping-list h3 {
+    color: #5a67d8;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.list-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(90, 103, 216, 0.1);
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.list-stats strong {
+    color: #5a67d8;
+}
+
+.item-list {
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border-left: 5px solid #5a67d8;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.item.purchased {
+    opacity: 0.7;
+    text-decoration: line-through;
+    border-left-color: #48bb78;
+    background: #f0fff4;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    font-weight: bold;
+    color: #2d3748;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.item-details {
+    font-size: 0.9em;
+    color: #718096;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: #ed8936;
+    color: white;
+}
+
+.btn-delete {
+    background: #e53e3e;
+    color: white;
+}
+
+.btn-toggle {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* === HISTÓRICO === */
+.history-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.history-section h3 {
+    color: #5a67d8;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.clear-btn {
+    padding: 12px 24px;
+    background: #5a67d8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.clear-btn:hover {
+    background: #4c51bf;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(90, 103, 216, 0.3);
+}
+
+.clear-btn:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.history-item {
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-left: 5px solid #a0aec0;
+    transition: all 0.3s ease;
+}
+
+.history-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.history-header {
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.history-items {
+    font-size: 0.9em;
+    color: #718096;
+    line-height: 1.4;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .item-actions {
+        align-self: stretch;
+        justify-content: space-between;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .list-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .login-form {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-small {
+        padding: 10px;
+        font-size: 0.9em;
+    }
 }
