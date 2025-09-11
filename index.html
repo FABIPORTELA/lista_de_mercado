@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Minha Lista de Compra</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <!-- Tela de Login -->
@@ -12,27 +12,25 @@
         <div class="login-container">
             <div class="logo-container">
                 <div class="logo">
-                    <div class="shopping-cart">
-                        🛒
-                    </div>
-                    <h1>MINHA LISTA<br>DE COMPRA</h1>
+                    <div class="shopping-cart">🛒</div>
+                    <h1>MINHA LISTA<br />DE COMPRA</h1>
                 </div>
             </div>
-            
+
             <form id="loginForm" class="login-form">
                 <div class="form-group">
-                    <label for="username">Usuário:fabiana</label>
-                    <input type="text" id="username" required placeholder="Digite seu nome">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" required placeholder="Digite: fabiana" />
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="password"><Senha:12345></label>
-                    <input type="password" id="password" required placeholder="Digite sua data de nascimento">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" required placeholder="Digite: 12345" />
                 </div>
-                
+
                 <button type="submit" class="login-btn">Entrar</button>
             </form>
-            
+
             <div id="loginAlert" class="alert"></div>
         </div>
     </div>
@@ -45,7 +43,7 @@
                 <h2>Minha Lista de Compra</h2>
             </div>
             <div class="user-info">
-                <span id="welcomeMessage">Bem-vindo!</span>
+                <span id="welcomeMessage">Bem-vinda, Fabiana!</span>
                 <button id="logoutBtn" class="logout-btn">Sair</button>
             </div>
         </header>
@@ -56,9 +54,9 @@
                 <h3>Adicionar Item</h3>
                 <form id="itemForm">
                     <div class="form-row">
-                        <input type="text" id="itemName" placeholder="Nome do item" required>
-                        <input type="number" id="itemQuantity" placeholder="Qtd" min="1" value="1" required>
-                        <input type="number" id="itemPrice" placeholder="Preço (R$)" step="0.01" min="0">
+                        <input type="text" id="itemName" placeholder="Nome do item" required />
+                        <input type="number" id="itemQuantity" placeholder="Qtd" min="1" value="1" required />
+                        <input type="number" id="itemPrice" placeholder="Preço (R$)" step="0.01" min="0" />
                         <button type="submit">Adicionar</button>
                     </div>
                 </form>
