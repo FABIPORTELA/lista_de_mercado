@@ -1,25 +1,28 @@
-// ===== VARIÁVEIS GLOBAIS =====
+// Variáveis globais para armazenar itens e histórico
 let shoppingItems = [];
 let shoppingHistory = [];
 let editingIndex = -1;
 
-// ===== SISTEMA DE LOGIN =====
+// Credenciais fixas para login
 const LOGIN_CREDENTIALS = {
     username: 'fabiana',
     password: '12345'
 };
 
+// Mostrar tela de login e esconder tela principal
 function showLogin() {
     document.getElementById('loginScreen').classList.add('active');
     document.getElementById('mainScreen').classList.remove('active');
 }
 
+// Mostrar tela principal e esconder tela de login
 function showMainScreen() {
     document.getElementById('loginScreen').classList.remove('active');
     document.getElementById('mainScreen').classList.add('active');
     updateUI();
 }
 
+// Função para tratar o login
 function handleLogin(event) {
     event.preventDefault();
 
@@ -48,12 +51,13 @@ function handleLogin(event) {
     }
 }
 
+// Função para logout: volta para tela de login
 function handleLogout() {
     showLogin();
     document.getElementById('loginAlert').style.display = 'none';
 }
 
-// ===== GERENCIAMENTO DE ITENS =====
+// Adicionar ou editar item na lista
 function addItem(name, quantity, price) {
     const item = {
         id: Date.now() + Math.random(),
@@ -74,6 +78,7 @@ function addItem(name, quantity, price) {
     updateUI();
 }
 
+// Remover item da lista
 function removeItem(index) {
     if (confirm('Tem certeza que deseja remover este item?')) {
         shoppingItems.splice(index, 1);
@@ -81,6 +86,7 @@ function removeItem(index) {
     }
 }
 
+// Editar item: preenche o formulário com os dados do item selecionado
 function editItem(index) {
     const item = shoppingItems[index];
     document.getElementById('itemName').value = item.name;
@@ -89,11 +95,13 @@ function editItem(index) {
     editingIndex = index;
 }
 
+// Marcar ou desmarcar item como comprado
 function togglePurchased(index) {
     shoppingItems[index].purchased = !shoppingItems[index].purchased;
     updateUI();
 }
 
+// Finalizar compra: move itens comprados para o histórico e limpa a lista
 function clearList() {
     if (shoppingItems.length === 0) return;
 
@@ -116,11 +124,12 @@ function clearList() {
     }
 }
 
-// ===== CÁLCULOS =====
+// Calcular total da lista atual (todos os itens)
 function calculateTotal() {
     return shoppingItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 
+// Calcular total apenas dos itens marcados como comprados
 function calculatePurchasedTotal() {
     return shoppingItems.reduce((total, item) => {
         if (item.purchased) {
@@ -130,7 +139,7 @@ function calculatePurchasedTotal() {
     }, 0);
 }
 
-// ===== INTERFACE DO USUÁRIO =====
+// Atualizar toda a interface: lista, histórico, estatísticas e botão limpar
 function updateUI() {
     renderShoppingList();
     renderHistory();
@@ -138,6 +147,7 @@ function updateUI() {
     updateClearButton();
 }
 
+// Renderizar lista de compras atual
 function renderShoppingList() {
     const listElement = document.getElementById('shoppingList');
     if (!listElement) return;
@@ -174,6 +184,7 @@ function renderShoppingList() {
     listElement.innerHTML = html;
 }
 
+// Renderizar histórico de compras finalizadas
 function renderHistory() {
     const historyElement = document.getElementById('historyList');
     if (!historyElement) return;
@@ -205,6 +216,7 @@ function renderHistory() {
     historyElement.innerHTML = html;
 }
 
+// Atualizar estatísticas (total de itens e preço total)
 function updateStats() {
     const totalItems = shoppingItems.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = calculateTotal();
@@ -213,12 +225,13 @@ function updateStats() {
     document.getElementById('totalPrice').textContent = `R$ ${totalPrice.toFixed(2)}`;
 }
 
+// Ativar ou desativar botão "Finalizar Compra Atual"
 function updateClearButton() {
     const clearBtn = document.getElementById('clearListBtn');
     clearBtn.disabled = shoppingItems.length === 0;
 }
 
-// Função para escapar HTML e evitar injeção
+// Função para escapar texto e evitar injeção de HTML
 function escapeHtml(text) {
     const map = {
         '&': '&amp;',
@@ -230,7 +243,7 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
 
-// ===== EVENTOS =====
+// Eventos para login, logout, adicionar item e finalizar compra
 document.getElementById('loginForm').addEventListener('submit', handleLogin);
 document.getElementById('logoutBtn').addEventListener('click', handleLogout);
 
@@ -248,11 +261,10 @@ document.getElementById('itemForm').addEventListener('submit', function (event) 
 
     addItem(name, quantity, price);
 
-    // Limpar formulário após adicionar
     this.reset();
 });
 
 document.getElementById('clearListBtn').addEventListener('click', clearList);
 
-// Inicializa a interface
+// Inicializa a interface na carga da página
 updateUI();
